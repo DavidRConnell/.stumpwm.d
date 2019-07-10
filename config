@@ -1,0 +1,41 @@
+;;; Based of tpine's stumpwm configuration.
+
+;;; Load extra packages
+(ql:quickload :cl-utilities)
+
+;;; Fixup slynk load path
+; (load "~/.config/stumpwm/slynk-fix.lisp")
+;; (push (concatenate 'string (get-sly-path) "slynk/") asdf:*central-registry*)
+(ql:quickload :slynk)
+
+(in-package :stumpwm)
+
+;;; Load Slynk
+(slynk:create-server :port 4004
+		     :dont-close t)
+
+(setq *startup-message* (format nil "Welcome David~%Slynk is on port 4004~%Happy Hacking!"))
+
+;;; Startup Programs
+;;; Start redshift
+(run-shell-command "redshift")
+(run-shell-command "emacs --daemon")
+
+;; set module directory (if not already set)
+(set-module-dir "~/.config/stumpwm/modules/")
+
+(defun restart-slynk ()
+  "Restart Slynk and reload source.
+This is needed if Sly updates while StumpWM is running"
+  (slynk:stop-server 4004)
+  (push (concatenate 'string (get-sly-path) "slynk/") asdf:*central-registry*)
+  (ql:quickload :slynk)
+  (slynk:create-server :port 4004
+		     :dont-close t))
+
+;;; Load pavol changes
+; (load "~/.config/stumpwm/volume.lisp")
+(load "~/.config/stumpwm/visual.lisp")
+(load "~/.config/stumpwm/keybindings.lisp")
+(load "~/.config/stumpwm/local.lisp")
+(run-shell-command "deepin-terminal")
