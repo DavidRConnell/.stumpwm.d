@@ -33,8 +33,11 @@ This is needed if Sly updates while StumpWM is running"
   (slynk:create-server :port 4004
 		     :dont-close t))
 
-;;; Load pavol changes
-; (load "~/.config/stumpwm/volume.lisp")
+(load-module "pass")
+(load-module "end-session")
+(load-module "amixer")
+
+(load "~/.config/stumpwm/volume.lisp")
 (load "~/.config/stumpwm/visual.lisp")
 (load "~/.config/stumpwm/keybindings.lisp")
 (load "~/.config/stumpwm/local.lisp")

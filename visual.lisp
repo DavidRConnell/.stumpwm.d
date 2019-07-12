@@ -28,13 +28,13 @@
   ; "Show the notification using standard STUMPWM::MESSAGE function"
   ; (declare (ignore app icon))
   ; (stumpwm:message "^B^[^3*~A ~A^]" summary body))
-;;; Start notification server
+;; Start notification server
 ; (notify-server-toggle)
 
-;; (load-module :ttf-fonts)
+; (load-module :ttf-fonts)
 
-; (in-package :stumpwm)
-; (load-module :battery-portable)
+(in-package :stumpwm)
+(load-module :battery-portable)
 (set-font "-*-dejavu sans mono-bold-r-*-*-14-*-*-*-*-*-*-*")
 
 ; (defun get-unread-emails ()
@@ -43,20 +43,20 @@
 	; "EMAILS"
 	; "^[^3*EMAILS^]")))
 
-; (defun battery-format (ml)
-  ; (declare (ignore ml))
-  ; (let ((battery-line (battery-portable::fmt-bat nil)))
-    ; (if (equal battery-line "(no battery)")
-	; ""
-	; (concat battery-line " | "))))
+(defun battery-format (ml)
+  (declare (ignore ml))
+  (let ((battery-line (battery-portable::fmt-bat nil)))
+    (if (equal battery-line "(no battery)")
+	""
+	(concat battery-line " | "))))
 
 ; (defun get-utc-time ()
   ; (subseq (run-shell-command "date -u +%H:%M" t) 0 5))
 
 
 ;; Show time, cpu usage and network traffic in the modelinecomment 
-; (setf *screen-mode-line-format*
-      ; (list '(:eval (battery-format)) '(:eval (time-format "%H:%M")) " EST | " '(:eval (get-utc-time)) " UTC | " '(:eval (get-unread-emails)) " |%W"))
+(setf *screen-mode-line-format*
+      (list '(:eval (battery-format)) '(:eval (time-format "%H:%M")) " EST | " "%W"))
 
 ; (setf *window-format* "%n %10c: %15t|")
 
@@ -68,4 +68,4 @@
                   ; #'(lambda (win) (stumpwm:repack-window-numbers)))
 
 ;; Turn on the modeline
-; (toggle-mode-line (current-screen) (current-head))
+(toggle-mode-line (current-screen) (current-head))

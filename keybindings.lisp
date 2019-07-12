@@ -8,7 +8,7 @@
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "s") "vsplit")
     (define-key m (kbd "v") "hsplit")
-    (define-key m (kbd "r") "remove")
+    (define-key m (kbd "c") "remove")
     (define-key m (kbd "o") "only")
     m))
 
@@ -95,20 +95,20 @@ C-keybinding n creates a new instance of the program"
 	    (run-or-raise "pavucontrol" '(:class "Pavucontrol")))
 
 ;;; Shutdown and Reboot
-(defcommand shutdown (confirm) ((:y-or-n "Confirm Shutdown "))
-  "Ask for the user to confirm before shutting down."
-	    (if confirm
-		(run-shell-command "poweroff")))
+; (defcommand shutdown (confirm) ((:y-or-n "Confirm Shutdown "))
+  ; "Ask for the user to confirm before shutting down."
+	    ; (if confirm
+		; (run-shell-command "poweroff")))
 
-(defcommand reboot (confirm) ((:y-or-n "Confirm Reboot "))
-  "Ask for the user to confirm before rebooting."
-	    (if confirm
-		(run-shell-command "reboot")))
+; (defcommand reboot (confirm) ((:y-or-n "Confirm Reboot "))
+  ; "Ask for the user to confirm before rebooting."
+	    ; (if confirm
+		; (run-shell-command "reboot")))
 
-(defcommand logout (confirm) ((:y-or-n "Confirm Logout"))
-  "Ask for the user to confirm before logging out. Don't know why it works."
-  (if confirm
-      (run-shell-command "xrandr --output eDP1 --off")))
+; (defcommand logout (confirm) ((:y-or-n "Confirm Logout"))
+  ; "Ask for the user to confirm before logging out. Don't know why it works."
+  ; (if confirm
+      ; (run-shell-command "xrandr --output eDP1 --off")))
 
 ;;; System Command Keymap
 (defparameter *screenshot-map*
@@ -117,24 +117,25 @@ C-keybinding n creates a new instance of the program"
     (define-key m (kbd "n") "screenshot-name")
     m))
 
-(defparameter *power-map*
-  (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "p") "shutdown")
-    (define-key m (kbd "r") "reboot")
-    (define-key m (kbd "l") "logout")
-    m)) 
+; (defparameter *power-map*
+  ; (let ((m (make-sparse-keymap)))
+    ; (define-key m (kbd "s") "shutdown")
+    ; (define-key m (kbd "r") "reboot")
+    ; (define-key m (kbd "l") "logout")
+    ; m)) 
 
-(defparameter *layout-map*
+(defparameter *pass-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "w") "work-setup")
-    (define-key m (kbd "s") *screenshot-map*)
+    (define-key m (kbd "c") "pass-copy")
+    (define-key m (kbd "m") "pass-copy-menu")
+	(define-key m (kbd "g") "pass-generate")
     m) )
 
 (defparameter *system-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "s") *screenshot-map*)
-    (define-key m (kbd "l") *layout-map*)
-    (define-key m (kbd "p") *power-map*)
+    (define-key m (kbd "p") "end-session")
     m))
 
 (define-key *root-map* (kbd "s") *system-map*)
+(define-key *root-map* (kbd "p") *pass-map*)
