@@ -71,14 +71,6 @@ C-keybinding n creates a new instance of the program"
 						    other-head))
 					     (group-frames group))))))
 
-; (defcommand work-setup () ()
-  ; "Configuration for Work Computer"
-  ; (run-shell-command "xrandr --output HDMI1 --off --output DP1 --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off" t)
-  ; (focus-current-frame-on-other-head (current-group))
-  ; (mode-line)
-  ; (work-keybindings)
-  ; (fnext))
-
 ;; Setup bindings for less common aplications which would be opened then closed
 (defcommand screenshot () ()
   "Do we wanna Scrot? Yeah! We wanna Scrot!"
@@ -94,35 +86,12 @@ C-keybinding n creates a new instance of the program"
 	    "Start volume control"
 	    (run-or-raise "pavucontrol" '(:class "Pavucontrol")))
 
-;;; Shutdown and Reboot
-; (defcommand shutdown (confirm) ((:y-or-n "Confirm Shutdown "))
-  ; "Ask for the user to confirm before shutting down."
-	    ; (if confirm
-		; (run-shell-command "poweroff")))
-
-; (defcommand reboot (confirm) ((:y-or-n "Confirm Reboot "))
-  ; "Ask for the user to confirm before rebooting."
-	    ; (if confirm
-		; (run-shell-command "reboot")))
-
-; (defcommand logout (confirm) ((:y-or-n "Confirm Logout"))
-  ; "Ask for the user to confirm before logging out. Don't know why it works."
-  ; (if confirm
-      ; (run-shell-command "xrandr --output eDP1 --off")))
-
 ;;; System Command Keymap
 (defparameter *screenshot-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "f") "screenshot")
     (define-key m (kbd "n") "screenshot-name")
     m))
-
-; (defparameter *power-map*
-  ; (let ((m (make-sparse-keymap)))
-    ; (define-key m (kbd "s") "shutdown")
-    ; (define-key m (kbd "r") "reboot")
-    ; (define-key m (kbd "l") "logout")
-    ; m)) 
 
 (defparameter *pass-map*
   (let ((m (make-sparse-keymap)))

@@ -50,22 +50,11 @@
 	""
 	(concat battery-line " | "))))
 
-; (defun get-utc-time ()
-  ; (subseq (run-shell-command "date -u +%H:%M" t) 0 5))
-
-
 ;; Show time, cpu usage and network traffic in the modelinecomment 
 (setf *screen-mode-line-format*
       (list '(:eval (battery-format)) '(:eval (time-format "%H:%M")) " EST | " "%W"))
 
 ; (setf *window-format* "%n %10c: %15t|")
-
-;;; When windows are desroyed window numbers are not synced
-;;; 2kays <https://github.com/2kays> posted a solution on
-;;; the TipsAndTricks section of the wiki
-;;; This will repack window numbers every time a window is killed
-; (stumpwm:add-hook stumpwm:*destroy-window-hook*
-                  ; #'(lambda (win) (stumpwm:repack-window-numbers)))
 
 ;; Turn on the modeline
 (toggle-mode-line (current-screen) (current-head))
