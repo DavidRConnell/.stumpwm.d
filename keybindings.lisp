@@ -60,16 +60,6 @@ C-keybinding n creates a new instance of the program"
 (define-key *root-map* (kbd "b") |*vimb-map*|)
 (define-key *root-map* (kbd "t") |*terminal-map*|)
 
-(defun focus-current-frame-on-other-head (group)
-  "Focus first frame on the next head."
-  (let* ((remaining-heads (cdr (member (group-current-head group) (screen-heads (current-screen)))))
-	 (other-head (if (null remaining-heads)
-			 (first (screen-heads (current-screen)))
-			 (car remaining-heads))))
-    (focus-frame group (first (remove-if-not (lambda (frame)
-					       (eql (frame-head group frame)
-						    other-head))
-					     (group-frames group))))))
 
 ;; Setup bindings for less common aplications which would be opened then closed
 (defcommand screenshot () ()
