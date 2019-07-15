@@ -52,7 +52,7 @@
 
 ;; Show time, cpu usage and network traffic in the modelinecomment 
 (setf *screen-mode-line-format*
-      (list '(:eval (battery-format)) '(:eval (time-format "%H:%M")) " EST | " "%W"))
+      (list '(:eval (battery-format)) '(:eval (time-format "%H:%M")) " EST " "| %W"))
 
 ; (setf *window-format* "%n %10c: %15t|")
 

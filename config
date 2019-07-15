@@ -37,3 +37,4 @@ This is needed if Sly updates while StumpWM is running"
 (load "~/.config/stumpwm/keybindings.lisp")
 (load "~/.config/stumpwm/local.lisp")
 (run-shell-command "deepin-terminal")
+(load "~/.config/stumpwm/appkeybindings.lisp")

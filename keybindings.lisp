@@ -17,6 +17,10 @@
 (define-key *root-map* (kbd "k") "move-focus up")
 (define-key *root-map* (kbd "l") "move-focus right")
 (define-key *root-map* (kbd "h") "move-focus left")
+(define-key *root-map* (kbd "J") "move-window down")
+(define-key *root-map* (kbd "K") "move-window up")
+(define-key *root-map* (kbd "L") "move-window right")
+(define-key *root-map* (kbd "H") "move-window left")
 
 ;; Buffers
 (define-key *root-map* (kbd "[") "pull-hidden-previous")
