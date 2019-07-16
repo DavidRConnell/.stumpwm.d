@@ -52,13 +52,11 @@ C-keybinding n creates a new instance of the program"
 		  (kbd "n") ,(format nil "~a" alias))))
 
 (make-program-binding "vimb" "Vimb")
-
-(make-program-binding "deepin-terminal" "Terminal" "terminal")
-
+(make-program-binding "alacritty" "Alacritty" "terminal")
 (make-program-binding "emacsclient -c -a ''" "Emacs" "emacs")
 
 (define-key *root-map* (kbd "C-b") "exec vimb")
-(define-key *root-map* (kbd "C-t") "exec deepin-terminal")
+(define-key *root-map* (kbd "C-t") "exec alacritty")
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c -a 'emacs --daemon'")
 (define-key *root-map* (kbd "e") |*emacs-map*|)
 (define-key *root-map* (kbd "b") |*vimb-map*|)
