@@ -22,7 +22,7 @@
 (set-font "-*-dejavu sans mono-*-r-*-*-16-*-*-*-*-*-*-*")
 
 (setf *screen-mode-line-format*
-      (list '(:eval (battery-format)) " " '(:eval (time-format "%H:%M")) " | %W"))
+      (list " " '(:eval (time-format "%H:%M")) " | %W"))
 
 (setf *window-format* "%n %10c |")
 
