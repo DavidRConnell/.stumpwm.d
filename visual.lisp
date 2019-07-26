@@ -19,7 +19,7 @@
   (update-color-map (current-screen)))
 
 (load-module :battery-portable)
-(set-font "-*-dejavu sans mono-bold-r-*-*-14-*-*-*-*-*-*-*")
+(set-font "-*-dejavu sans mono-*-r-*-*-16-*-*-*-*-*-*-*")
 
 (setf *screen-mode-line-format*
       (list '(:eval (battery-format)) " " '(:eval (time-format "%H:%M")) " | %W"))
