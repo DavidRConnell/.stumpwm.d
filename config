@@ -6,19 +6,11 @@
 
 (in-package :stumpwm)
 
+(set-prefix-key (kbd "C-t"))
+
 ;;; Load Slynk
 (slynk:create-server :port 4004
 		     :dont-close t)
-
-(setq *startup-message* (format nil "Welcome David~%Slynk is on port 4004~%Happy Hacking!"))
-
-;;; Startup Programs
-;;; Start redshift
-(run-shell-command "redshift")
-(run-shell-command "emacs --daemon")
-
-;; set module directory (if not already set)
-(set-module-dir "~/.config/stumpwm/modules/")
 
 (defun restart-slynk ()
   "Restart Slynk and reload source.
@@ -26,15 +18,26 @@ This is needed if Sly updates while StumpWM is running"
   (slynk:stop-server 4004)
   (ql:quickload :slynk)
   (slynk:create-server :port 4004
-		     :dont-close t))
+                       :dont-close t))
+
+(setq *startup-message* (format nil "Welcome David~%Slynk is on port 4004~%Happy Hacking!"))
+
+;;; Startup Programs
+(run-shell-command "redshift")
+(run-shell-command "emacs --daemon")
+
+;; set module directory (if not already set)
+(set-module-dir "~/.config/stumpwm/modules/")
+(defvar *config-dir* "~/.config/stumpwm/")
+(defun load-config-file (relative-path)
+  (load (concat *config-dir* relative-path)))
 
 (load-module "pass")
-(load-module "end-session")
-(load-module "amixer")
 
-(load "~/.config/stumpwm/volume.lisp")
-(load "~/.config/stumpwm/visual.lisp")
-(load "~/.config/stumpwm/keybindings.lisp")
-(load "~/.config/stumpwm/local.lisp")
-(run-shell-command "deepin-terminal")
-(load "~/.config/stumpwm/appkeybindings.lisp")
+(load-config-file "session.lisp")
+(load-config-file "volume.lisp")
+(load-config-file "visual.lisp")
+(load-config-file "buffers.lisp")
+(load-config-file "apps.lisp")
+(load-config-file "local.lisp")
+(run-shell-command "alacritty")
