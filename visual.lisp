@@ -27,4 +27,5 @@
 (setf *window-format* "%n %10c |")
 
 ;; Turn on the modeline
-(toggle-mode-line (current-screen) (current-head))
+(loop for head in (screen-heads (current-screen)) do
+      (toggle-mode-line (current-screen) head))
