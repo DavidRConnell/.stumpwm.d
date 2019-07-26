@@ -1,60 +1,30 @@
 (in-package :stumpwm)
 
 ;;; Visual
-;;; Colors based off spacemacs-dark-theme for emacs
-(let ((grey "#292b2e")
-      (purple "#5d4d7a"))
+(let ((bg "#282a36")
+      (fg "#8986d1"))
 
-  (set-fg-color purple)
-  (set-bg-color grey)
-  (set-border-color purple)
-  (set-focus-color purple)
-  (set-unfocus-color grey)
+  (set-fg-color fg)
+  (set-bg-color bg)
+  (set-border-color fg)
+  (set-focus-color fg)
+  (set-unfocus-color bg)
 
-  (setf *mode-line-foreground-color* purple
-	*mode-line-background-color* grey
-	*mode-line-border-color* purple)
+  (setf *mode-line-foreground-color* fg
+	*mode-line-background-color* bg
+	*mode-line-border-color* fg)
   
-  (setf (car *colors*) grey
-	(car (last *colors*)) purple)
+  (setf (car *colors*) bg
+	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
 
-;;; Load battery module
-; (load-module "notify")
-
-;; Set notification text color to yellow to make it obvious
-; (in-package :notify)
-; (defun show-notification (app icon summary body)
-  ; "Show the notification using standard STUMPWM::MESSAGE function"
-  ; (declare (ignore app icon))
-  ; (stumpwm:message "^B^[^3*~A ~A^]" summary body))
-;; Start notification server
-; (notify-server-toggle)
-
-; (load-module :ttf-fonts)
-
-(in-package :stumpwm)
 (load-module :battery-portable)
 (set-font "-*-dejavu sans mono-bold-r-*-*-14-*-*-*-*-*-*-*")
 
-; (defun get-unread-emails ()
-  ; (let ((emails (remove #\Newline (run-shell-command "notmuch count tag:unread" t))))
-    ; (if (equal emails "0")
-	; "EMAILS"
-	; "^[^3*EMAILS^]")))
-
-(defun battery-format (ml)
-  (declare (ignore ml))
-  (let ((battery-line (battery-portable::fmt-bat nil)))
-    (if (equal battery-line "(no battery)")
-	""
-	(concat battery-line " | "))))
-
-;; Show time, cpu usage and network traffic in the modelinecomment 
 (setf *screen-mode-line-format*
-      (list '(:eval (battery-format)) '(:eval (time-format "%H:%M")) " EST " "| %W"))
+      (list '(:eval (battery-format)) " " '(:eval (time-format "%H:%M")) " | %W"))
 
-; (setf *window-format* "%n %10c: %15t|")
+(setf *window-format* "%n %10c |")
 
 ;; Turn on the modeline
 (toggle-mode-line (current-screen) (current-head))
