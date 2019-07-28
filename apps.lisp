@@ -28,6 +28,7 @@ key will run-or-pull program-name."
 (make-program-binding "emacsclient -c -a ''" "Emacs" "e" "emacs")
 
 ;;; System Command Keymap
+(load-module "pass")
 (defparameter *pass-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "c") "pass-copy-menu")

@@ -32,8 +32,6 @@ This is needed if Sly updates while StumpWM is running"
 (defun load-config-file (relative-path)
   (load (concat *config-dir* relative-path)))
 
-(load-module "pass")
-
 (load-config-file "session.lisp")
 (load-config-file "volume.lisp")
 (load-config-file "visual.lisp")
