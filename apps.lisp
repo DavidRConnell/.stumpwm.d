@@ -11,7 +11,7 @@ key will run-or-pull program-name."
       (setf alias program-name))
 
   `(progn
-     (defcommand ,(intern (format nil "~a" alias)) () ()
+     (defcommand ,(intern (format nil "run-new-~a" alias)) () ()
        (run-shell-command ,program-name))
 
      (defcommand ,(intern (format nil "run-or-pull-~a" alias)) () ()
@@ -21,9 +21,9 @@ key will run-or-pull program-name."
        ,(format nil "run-or-pull-~a" alias))
 
      (define-key *root-map* (kbd ,(format nil "C-~a" key))
-       ,(format nil "~a" alias))))
+       ,(format nil "run-new-~a" alias))))
 
-(make-program-binding "vimb" "Vimb" "b")
+(make-program-binding "vimb" "Vimb" "b" "browser")
 (make-program-binding "alacritty" "Alacritty" "t" "terminal")
 (make-program-binding "emacsclient -c -a ''" "Emacs" "e" "emacs")
 
