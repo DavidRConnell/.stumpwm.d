@@ -38,4 +38,3 @@ This is needed if Sly updates while StumpWM is running"
 (load-config-file "buffers.lisp")
 (load-config-file "apps.lisp")
 (load-config-file "local.lisp")
-(run-shell-command "alacritty")
