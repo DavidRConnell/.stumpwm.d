@@ -1,3 +1,4 @@
+;;; -*-  mode: lisp; -*-
 ;;; Based of tpine's stumpwm configuration.
 
 ;;; Load extra packages
