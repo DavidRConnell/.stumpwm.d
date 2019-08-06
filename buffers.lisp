@@ -8,6 +8,12 @@
     (define-key m (kbd "c") "remove")
     (define-key m (kbd "o") "only")
     (define-key m (kbd "l") "windowlist")
+    (define-key m (kbd "=") "balance-frames")
+    (define-key m (kbd "<") "resize-direction left")
+    (define-key m (kbd ">") "resize-direction right")
+    (define-key m (kbd "+") "resize-direction up")
+    (define-key m (kbd "-") "resize-direction down")
+    (define-key m (kbd "|") "iresize")
     m))
 
 (define-key *root-map* (kbd "w") *window-map*)
