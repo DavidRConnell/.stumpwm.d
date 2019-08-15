@@ -40,10 +40,11 @@
 (define-key *root-map* (kbd "7") "select-window-by-number 7")
 (define-key *root-map* (kbd "8") "select-window-by-number 8")
 (define-key *root-map* (kbd "9") "select-window-by-number 9")
+(define-key *root-map* (kbd "`") "select-window-by-number")
 
 ;; Buffers
-(define-key *root-map* (kbd "[") "pull-hidden-previous")
-(define-key *root-map* (kbd "]") "pull-hidden-next")
+(define-key *root-map* (kbd "]") "next")
+(define-key *root-map* (kbd "[") "prev")
 
 ;; Groups
 (defparameter *group-map*
