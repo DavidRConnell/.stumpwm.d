@@ -13,7 +13,7 @@
   (setf *mode-line-foreground-color* fg
 	*mode-line-background-color* bg
 	*mode-line-border-color* fg)
-  
+	
   (setf (car *colors*) bg
 	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
