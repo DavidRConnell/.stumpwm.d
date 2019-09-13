@@ -21,6 +21,10 @@
 (set-font "-*-dejavu sans mono-*-r-*-*-16-*-*-*-*-*-*-*")
 
 ;; Mode line
+
+(defvar *mode-line-sep* " | "
+  "Symbol for seperating elements on the mode line")
+
 (defun get-battery-info ()
   (let* ((battery-stats (run-shell-command-list
                          "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk -F\": *\" '/(percentage|state):/ { print $2 }'")
@@ -29,8 +33,8 @@
          (percent (second battery-stats)))
     (if (not (emptyp percent))
         (if (not (string= "discharging" state))
-         (concat "~" percent " | ")
-         (concat percent " | "))
+         (concat "~" percent *mode-line-sep*)
+         (concat percent *mode-line-sep*))
       (concat ""))))
 
 (defun get-volume ()
@@ -41,13 +45,13 @@
          (mutesign (if (string= (second volume-stats) "yes")
                     "x"
                     "")))
-    (concat mutesign percent " | ")))
+    (concat mutesign percent *mode-line-sep*)))
 
 (defun get-mail()
   (let ((emails (remove #\Newline (run-shell-command "notmuch count tag:unread" t))))
     (if (equal emails "0")
-        "Mail: 0 | "
-        (concat "^[^3*Mail: " emails "^] | "))))
+        ""
+        (concat "^[^3*Mail: " emails "^]" *mode-line-sep*))))
 
 (setf *screen-mode-line-format*
       (list " " '(:eval (time-format "%H:%M")) " | "
