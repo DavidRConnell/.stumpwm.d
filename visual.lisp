@@ -56,12 +56,16 @@
 (setf *screen-mode-line-format*
       (list " %d" *mode-line-sep*
             '(:eval (get-volume))
-            '(:eval (get-mail))
-            "%W"))
+            '(:eval (get-battery-info))
+            "%W" *mode-line-sep*
+            '(:eval (get-mail))))
 
-(setf *window-format* "%n %10c |")
+(setf *mode-line-pad-x* 0)
 (setf *time-modeline-string*
       "%a %b %e %R")
+
+(setf *window-format*
+      "%n:%15c ")
 
 (loop for head in (screen-heads (current-screen)) do
       (toggle-mode-line (current-screen) head))
