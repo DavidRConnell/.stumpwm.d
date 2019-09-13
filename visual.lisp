@@ -54,13 +54,14 @@
         (concat "^[^3*Mail: " emails "^]" *mode-line-sep*))))
 
 (setf *screen-mode-line-format*
-      (list " " '(:eval (time-format "%H:%M")) " | "
-            '(:eval (get-battery-info))
+      (list " %d" *mode-line-sep*
             '(:eval (get-volume))
             '(:eval (get-mail))
             "%W"))
 
 (setf *window-format* "%n %10c |")
+(setf *time-modeline-string*
+      "%a %b %e %R")
 
 (loop for head in (screen-heads (current-screen)) do
       (toggle-mode-line (current-screen) head))
