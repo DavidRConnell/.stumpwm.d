@@ -47,25 +47,45 @@
                     "")))
     (concat mutesign percent *mode-line-sep*)))
 
-(defun get-mail()
+(defun get-mail ()
   (let ((emails (remove #\Newline (run-shell-command "notmuch count tag:unread" t))))
     (if (equal emails "0")
         ""
         (concat "^[^3*Mail: " emails "^]" *mode-line-sep*))))
 
-(setf *screen-mode-line-format*
-      (list " %d" *mode-line-sep*
-            '(:eval (get-volume))
+(setf *screen-mode-line-left-side*
+      (list " %d" *mode-line-sep* "%W"))
+
+(setf *screen-mode-line-right-side*
+      (list *mode-line-sep*
+            '(:eval (get-mail))
             '(:eval (get-battery-info))
-            "%W" *mode-line-sep*
-            '(:eval (get-mail))))
+            '(:eval (get-volume))))
+
+(defun parse-justified-mode-line ()
+  (let* ((ml-left-side (mode-line-format-elt
+                     *screen-mode-line-left-side*))
+         (ml-right-side (mode-line-format-elt
+                      *screen-mode-line-right-side*))
+         (ml-length (+ (length ml-left-side)
+                       (length ml-right-side)))
+         (pixels-per-char (text-line-width
+                          (screen-font (current-screen)) "M"))
+         (num-head-columns (/ (head-width (current-head)) pixels-per-char))
+         (padding (- (+ num-head-columns 6) ml-length)))
+
+  (format nil "~a~va~a"
+          ml-left-side padding " " ml-right-side)))
+
+(setf *screen-mode-line-format*
+      (list '(:eval (parse-justified-mode-line))))
 
 (setf *mode-line-pad-x* 0)
 (setf *time-modeline-string*
       "%a %b %e %R")
 
 (setf *window-format*
-      "%n:%15c ")
+      "%n:%15c")
 
 (loop for head in (screen-heads (current-screen)) do
       (toggle-mode-line (current-screen) head))
