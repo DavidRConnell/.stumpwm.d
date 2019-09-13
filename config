@@ -26,6 +26,7 @@ This is needed if Sly updates while StumpWM is running"
 ;;; Startup Programs
 (run-shell-command "redshift")
 (run-shell-command "emacs --daemon")
+(run-shell-command "offlineimap")
 
 ;; set module directory (if not already set)
 (set-module-dir "~/.config/stumpwm/modules/")

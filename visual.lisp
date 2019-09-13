@@ -43,10 +43,17 @@
                     "")))
     (concat mutesign percent " | ")))
 
+(defun get-mail()
+  (let ((emails (remove #\Newline (run-shell-command "notmuch count tag:unread" t))))
+    (if (equal emails "0")
+        "Mail: 0 | "
+        (concat "^[^3*Mail: " emails "^] | "))))
+
 (setf *screen-mode-line-format*
       (list " " '(:eval (time-format "%H:%M")) " | "
             '(:eval (get-battery-info))
             '(:eval (get-volume))
+            '(:eval (get-mail))
             "%W"))
 
 (setf *window-format* "%n %10c |")
