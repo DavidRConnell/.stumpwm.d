@@ -105,14 +105,24 @@
           ml-left-side padding " " ml-right-side)))
 
 (setf *screen-mode-line-format*
-      (list '(:eval (parse-justified-mode-line))))
+      (list " "
+            "%d"
+            *mode-line-sep*
+            "%W"
+            "%u"
+            "^>"
+            *mode-line-sep*
+            ; '(:eval (get-mail))
+            '(:eval (get-battery-info))
+            '(:eval (get-volume))
+            " "))
 
 (setf *mode-line-pad-x* 0)
 (setf *time-modeline-string*
       "%a %b %e %R")
 
 (setf *window-format*
-      "%n:%15c")
+      "%n:%10c")
 
 (loop for head in (screen-heads (current-screen)) do
       (toggle-mode-line (current-screen) head))
