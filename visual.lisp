@@ -27,31 +27,52 @@
                          :size 12))
 
 ;; Mode line
-
 (defvar *mode-line-sep* " | "
   "Symbol for seperating elements on the mode line")
 
 (defun get-battery-info ()
   (let* ((battery-stats (run-shell-command-list
-                         "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk -F\": *\" '/(percentage|state):/ { print $2 }'")
-                         )
+                         "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk -F\": *\" '/(percentage|state):/ { print $2 }'"))
          (state (first battery-stats))
-         (percent (second battery-stats)))
-    (if (not (emptyp percent))
-        (if (not (string= "discharging" state))
-         (concat "~" percent *mode-line-sep*)
-         (concat percent *mode-line-sep*))
-      (concat ""))))
+         (percent (second battery-stats))
+         (charge-symbol (if (string= "discharging" state)
+                            ""
+                            (format nil "~C" #\U+26a1)))
+
+         (percent-int (parse-integer (string-trim "%" percent)))
+         (battery-symbol (format nil "~C"
+                                 (cond ((> percent-int 98) #\U+f578)
+                                       ((> percent-int 90) #\U+f581)
+                                       ((> percent-int 80) #\U+f580)
+                                       ((> percent-int 70) #\U+f57f)
+                                       ((> percent-int 60) #\U+f57e)
+                                       ((> percent-int 50) #\U+f57d)
+                                       ((> percent-int 40) #\U+f57c)
+                                       ((> percent-int 30) #\U+f57b)
+                                       ((> percent-int 20) #\U+f57a)
+                                       (t #\U+f579)))))
+    (cond ((< percent-int 10)
+           (setf battery-symbol (concat "^[^1*" battery-symbol "^]")))
+          ((< percent-int 30)
+           (setf battery-symbol (concat "^[^3*" battery-symbol "^]"))))
+
+    (if (emptyp percent)
+        ""
+        (format nil "~A~A ~A~A" charge-symbol battery-symbol percent *mode-line-sep*))))
 
 (defun get-volume ()
   (let* ((volume-stats (split-string
                         (run-shell-command "pulseaudio-ctl full-status" t)
                         " "))
-         (percent (first volume-stats))
-         (mutesign (if (string= (second volume-stats) "yes")
-                    "x"
-                    "")))
-    (concat mutesign percent *mode-line-sep*)))
+         (percent-string (first volume-stats))
+         (percent-int (parse-integer percent-string))
+         (sign (cond ((string= (second volume-stats) "yes")
+                      #\U+fc5d)
+                     ((> percent-int 50)
+                      #\U+f028)
+                     (t #\U+f027))))
+
+    (format nil "~C ~A" sign percent-string)))
 
 (defun get-mail ()
   (let ((emails (remove #\Newline (run-shell-command "notmuch count tag:unread" t))))
