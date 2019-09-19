@@ -68,3 +68,5 @@
 (define-key *root-map* (kbd "g") *group-map*)
 (define-key *root-map* (kbd "{") "gprev")
 (define-key *root-map* (kbd "}") "gnext")
+
+(define-key *root-map* (kbd "q") "delete")
