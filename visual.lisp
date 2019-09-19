@@ -80,29 +80,6 @@
         ""
         (concat "^[^3*Mail: " emails "^]" *mode-line-sep*))))
 
-(setf *screen-mode-line-left-side*
-      (list " %d" *mode-line-sep* "%W"))
-
-(setf *screen-mode-line-right-side*
-      (list *mode-line-sep*
-            '(:eval (get-mail))
-            '(:eval (get-battery-info))
-            '(:eval (get-volume))))
-
-(defun parse-justified-mode-line ()
-  (let* ((ml-left-side (mode-line-format-elt
-                     *screen-mode-line-left-side*))
-         (ml-right-side (mode-line-format-elt
-                      *screen-mode-line-right-side*))
-         (ml-length (+ (length ml-left-side)
-                       (length ml-right-side)))
-         (pixels-per-char (text-line-width
-                          (screen-font (current-screen)) "M"))
-         (num-head-columns (/ (head-width (current-head)) pixels-per-char))
-         (padding (- (+ num-head-columns 6) ml-length)))
-
-  (format nil "~a~va~a"
-          ml-left-side padding " " ml-right-side)))
 
 (setf *screen-mode-line-format*
       (list " "
