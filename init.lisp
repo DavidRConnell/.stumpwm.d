@@ -11,7 +11,7 @@
 
 ;;; Load Slynk
 (slynk:create-server :port 4004
-		     :dont-close t)
+                     :dont-close t)
 
 (defun restart-slynk ()
   "Restart Slynk and reload source.
@@ -26,7 +26,9 @@ This is needed if Sly updates while StumpWM is running"
 ;;; Startup Programs
 (run-shell-command "redshift")
 (run-shell-command "emacs --daemon")
-(run-shell-command "offlineimap")
+;; (run-shell-command "offlineimap")
+(run-shell-command "kill -9 $(ps -e | awk '/pulseaudio$/ { print $1 })")
+(run-shell-command "pulseaudio --start")
 
 ;; set module directory (if not already set)
 (set-module-dir "~/.config/stumpwm/modules/")
@@ -41,4 +43,3 @@ This is needed if Sly updates while StumpWM is running"
 (load-config-file "buffers.lisp")
 (load-config-file "apps.lisp")
 (load-config-file "local.lisp")
-(run-shell-command "pulseaudio --start")
