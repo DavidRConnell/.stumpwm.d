@@ -13,6 +13,10 @@
   (setf *mode-line-foreground-color* fg
 	*mode-line-background-color* bg
 	*mode-line-border-color* fg)
+
+  (setf *grab-pointer-character* 40
+        *grab-pointer-character-mask* 41)
+
 	
   (setf (car *colors*) bg
 	(car (last *colors*)) fg)
