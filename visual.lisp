@@ -18,13 +18,7 @@
 	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
 
-(ql:quickload "clx-truetype")
-(load-module "ttf-fonts")
-(xft:cache-fonts)
-(set-font (make-instance 'xft:font
-                         :family "DejaVuSansMono Nerd Font"
-                         :subfamily "Book"
-                         :size 12))
+(set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-14-*-*-*-*-*-*-*")
 
 ;; Mode line
 (defvar *mode-line-sep* " | "
