@@ -41,6 +41,7 @@
 (define-key *root-map* (kbd "8") "select-window-by-number 8")
 (define-key *root-map* (kbd "9") "select-window-by-number 9")
 (define-key *root-map* (kbd "`") "select-window-by-number")
+(define-key *root-map* (kbd "q") "delete")
 
 ;; Buffers
 (define-key *root-map* (kbd "]") "next")
