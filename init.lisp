@@ -31,8 +31,8 @@ This is needed if Sly updates while StumpWM is running"
 (run-shell-command "pulseaudio --start")
 
 ;; set module directory (if not already set)
-(set-module-dir "~/.config/stumpwm/modules/")
-(defvar *config-dir* "~/.config/stumpwm/")
+(set-module-dir "~/projects/stumpwm-contrib/")
+(defvar *config-dir* "~/.stumpwm.d/")
 (defun load-config-file (relative-path)
   (load (concat *config-dir* relative-path)))
 
