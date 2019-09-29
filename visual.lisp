@@ -73,11 +73,10 @@
     (format nil "~C ~A" sign percent-string)))
 
 (defun get-mail ()
-  (let ((emails (remove #\Newline (run-shell-command "notmuch count tag:unread" t))))
+  (let ((emails (remove #\Newline (run-shell-command "mu find g:n | wc -l" t))))
     (if (equal emails "0")
-        ""
-        (concat "^[^3*Mail: " emails "^]" *mode-line-sep*))))
-
+        (format nil "~C~A" #\U+faee *mode-line-sep*)
+        (format nil "^[^3*~C ~A^]~A" #\U+f6ed emails *mode-line-sep*))))
 
 (setf *screen-mode-line-format*
       (list " "
@@ -87,7 +86,7 @@
             "%u"
             "^>"
             *mode-line-sep*
-            ; '(:eval (get-mail))
+            '(:eval (get-mail))
             '(:eval (get-battery-info))
             '(:eval (get-volume))
             " "))

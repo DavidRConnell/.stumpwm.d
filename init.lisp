@@ -26,7 +26,6 @@ This is needed if Sly updates while StumpWM is running"
 ;;; Startup Programs
 (run-shell-command "redshift")
 (run-shell-command "emacs --daemon")
-;; (run-shell-command "offlineimap")
 (run-shell-command "kill -9 $(ps -e | awk '/pulseaudio$/ { print $1 })")
 (run-shell-command "pulseaudio --start")
 
