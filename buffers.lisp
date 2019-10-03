@@ -51,7 +51,7 @@
 (define-key *root-map* (kbd "M-n") "gnew")
 (define-key *root-map* (kbd "M-q") "gkill")
 (define-key *root-map* (kbd "M-o") "gother")
-(define-key *root-map* (kbd "M-l") "grouplist")
+(define-key *root-map* (kbd "M-g") "grouplist")
 (define-key *root-map* (kbd "M-0") "gselect 0")
 (define-key *root-map* (kbd "M-1") "gselect 1")
 (define-key *root-map* (kbd "M-2") "gselect 2")
@@ -64,4 +64,7 @@
 (define-key *root-map* (kbd "M-9") "gselect 9")
 (define-key *root-map* (kbd "M-h") "gprev")
 (define-key *root-map* (kbd "M-l") "gnext")
+(define-key *root-map* (kbd "M-H") "gprev-with-window")
+(define-key *root-map* (kbd "M-L") "gnext-with-window")
 
+(define-key *root-map* (kbd "z") "banish")
