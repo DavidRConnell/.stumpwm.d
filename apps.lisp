@@ -45,12 +45,12 @@ move windows."
 (defcommand app-search-duck () ()
   (let ((search-term (read-one-line (current-screen)
                                     "Search duck: ")))
-    (run-shell-command (format nil "vimb \"~a\"" search-term))))
+    (run-shell-command (format nil "luakit \'~a\'" search-term))))
 
 (defcommand app-search-scholar () ()
   (let ((search-term (read-one-line (current-screen)
                                     "Search scholar: ")))
-    (run-shell-command (format nil "vimb \"sch ~a\"" search-term))))
+    (run-shell-command (format nil "luakit \'!scholar ~a\'" search-term))))
 
 (defcommand toggle-stumpwm-repl () ()
   (run-shell-command "emacsclient -c -e \"(open-stumpwm-repl)\""))
