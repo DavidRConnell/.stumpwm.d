@@ -23,9 +23,20 @@
     (define-key m (kbd "C-r") "winner-redo")
     m))
 
+(defparameter *goto-window-map*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "a") "select-window-by-number 0")
+    (define-key m (kbd "o") "select-window-by-number 1")
+    (define-key m (kbd "e") "select-window-by-number 2")
+    (define-key m (kbd "u") "select-window-by-number 3")
+    (define-key m (kbd "h") "select-window-by-number 4")
+    (define-key m (kbd "t") "select-window-by-number 5")
+    (define-key m (kbd "n") "select-window-by-number 6")
+    (define-key m (kbd "s") "select-window-by-number 7")
     m))
 
 (define-key *root-map* (kbd "w") *window-map*)
+(define-key *root-map* (kbd "u") *goto-window-map*)
 (define-key *root-map* (kbd "j") "move-focus down")
 (define-key *root-map* (kbd "k") "move-focus up")
 (define-key *root-map* (kbd "l") "move-focus right")
