@@ -1,6 +1,5 @@
 (in-package :stumpwm)
 
-;;; Visual
 (let ((bg "#282a36")
       (fg "#8986d1"))
 
@@ -22,7 +21,7 @@
 	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
 
-(set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-14-*-*-*-*-*-*-*")
+(set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-15-*-*-*-*-*-*-*")
 
 ;; Mode line
 (defvar *mode-line-sep* " | "
