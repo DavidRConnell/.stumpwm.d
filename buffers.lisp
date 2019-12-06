@@ -1,4 +1,9 @@
 (in-package :stumpwm)
+(load-module "winner-mode")
+
+(add-hook *post-command-hook* (lambda (command)
+                                (when (member command winner-mode:*default-commands*)
+                                  (winner-mode:dump-group-to-file))))
 
 ;; Frame Splitting and moving
 (defparameter *window-map*
@@ -14,6 +19,10 @@
     (define-key m (kbd "+") "resize-direction up")
     (define-key m (kbd "-") "resize-direction down")
     (define-key m (kbd "|") "iresize")
+    (define-key m (kbd "u") "winner-undo")
+    (define-key m (kbd "C-r") "winner-redo")
+    m))
+
     m))
 
 (define-key *root-map* (kbd "w") *window-map*)
