@@ -45,19 +45,19 @@ move windows."
 (defcommand app-search-duck () ()
   (let ((search-term (read-one-line (current-screen)
                                     "Search duck: ")))
-    (run-shell-command (format nil "luakit \'~a\'" search-term))))
+    (run-shell-command (format nil "~a \'~a\'" *browser* search-term))))
 
 (defcommand app-search-scholar () ()
   (let ((search-term (read-one-line (current-screen)
                                     "Search scholar: ")))
-    (run-shell-command (format nil "luakit \'!scholar ~a\'" search-term))))
+    (run-shell-command (format nil "~a \'!scholar ~a\'" *browser* search-term))))
 
 (defcommand toggle-stumpwm-repl () ()
   (run-shell-command "emacsclient -c -e \"(open-stumpwm-repl)\""))
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "f") "exec alacritty -e vifm")
+    (define-key m (kbd "f") (concat "exec " *terminal* " -e ranger"))
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd ",") "toggle-stumpwm-repl")
