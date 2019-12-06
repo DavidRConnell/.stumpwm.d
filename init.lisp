@@ -36,6 +36,8 @@ This is needed if Sly updates while StumpWM is running"
   (load (concat *config-dir* relative-path)))
 
 (load-config-file "general.lisp")
+(load-config-file "profile.lisp")
+(load-config-file "secrets.lisp") ; Defines vars I don't want to share.
 (load-config-file "session.lisp")
 (load-config-file "media.lisp")
 (load-config-file "visual.lisp")
