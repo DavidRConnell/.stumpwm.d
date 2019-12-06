@@ -54,6 +54,14 @@ move windows."
 
 (defcommand toggle-stumpwm-repl () ()
   (run-shell-command "emacsclient -c -e \"(open-stumpwm-repl)\""))
+(defcommand app-open-email () ()
+  "*email-url* defined in secrets.lisp"
+  (run-shell-command (concat *alt-browser* " " *email-url*)))
+
+(defcommand app-open-teams () ()
+  "*email-url* defined in secrets.lisp"
+  (run-shell-command (concat *alt-browser* " teams.webex.com")))
+
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
@@ -61,6 +69,8 @@ move windows."
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd ",") "toggle-stumpwm-repl")
+    (define-key m (kbd "m") "app-open-email")
+    (define-key m (kbd "t") "app-open-teams")
     m))
 
 (define-key *root-map* (kbd "p") *pass-map*)
