@@ -13,21 +13,11 @@
 (slynk:create-server :port 4004
                      :dont-close t)
 
-(defun restart-slynk ()
-  "Restart Slynk and reload source.
-This is needed if Sly updates while StumpWM is running"
-  (slynk:stop-server 4004)
-  (ql:quickload :slynk)
-  (slynk:create-server :port 4004
-                       :dont-close t))
-
 (setq *startup-message* (format nil "Welcome David~%Slynk is on port 4004~%Happy Hacking!"))
 
 ;;; Startup Programs
 (run-shell-command "redshift")
 (run-shell-command "emacs --daemon")
-(run-shell-command "kill $(ps -e | awk '/pulseaudio$/ { print $1 }')")
-(run-shell-command "pulseaudio --start")
 
 ;; set module directory (if not already set)
 (set-module-dir "~/projects/stumpwm-contrib/")
