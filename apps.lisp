@@ -29,7 +29,7 @@ move windows."
      (define-key *root-map* (kbd ,(format nil "C-~a" key))
        ,(format nil "run-new-~a" alias))))
 
-(make-program-binding "luakit" "Luakit" "b" "browser")
+(make-program-binding "qutebrowser" "Qutebrowser" "b" "browser")
 (make-program-binding "chromium" "Chromium" "M-b" "alt-browser")
 (make-program-binding "alacritty" "Alacritty" "t" "terminal")
 (make-program-binding "emacsclient -c -a ''" "Emacs" "e" "emacs")
