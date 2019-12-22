@@ -1,17 +1,18 @@
 (in-package :stumpwm)
 
-(let ((bg "#282a36")
-      (fg "#8986d1"))
+(let ((bg "#282c34")
+      (fg "#a9a1e1"))
 
   (set-fg-color fg)
-  (set-bg-color bg)
-  (set-border-color fg)
+  (set-bg-color "#000000")
+  (set-border-color bg)
   (set-focus-color fg)
   (set-unfocus-color bg)
 
-  (setf *mode-line-foreground-color* fg
-	*mode-line-background-color* bg
-	*mode-line-border-color* fg)
+  (setf *mode-line-foreground-color* bg
+        *mode-line-border-width* 0
+        *mode-line-background-color* fg
+        *mode-line-highlight-template* "^B~A^b")
 
   (setf *grab-pointer-character* 40
         *grab-pointer-character-mask* 41)
@@ -22,6 +23,7 @@
   (update-color-map (current-screen)))
 
 (set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-15-*-*-*-*-*-*-*")
+(set-msg-border-width 0)
 (setf *input-window-gravity* :center
       *message-window-gravity* :center
       *message-window-padding* 15
@@ -101,7 +103,8 @@
       "%a %b %e %R")
 
 (setf *window-format*
-      "%n:%10c")
+      "%n: %12c")
+
 
 (loop for head in (screen-heads (current-screen)) do
       (toggle-mode-line (current-screen) head))
