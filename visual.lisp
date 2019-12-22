@@ -22,6 +22,12 @@
   (update-color-map (current-screen)))
 
 (set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-15-*-*-*-*-*-*-*")
+(setf *input-window-gravity* :center
+      *message-window-gravity* :center
+      *message-window-padding* 15
+      *message-window-y-padding* 20)
+
+(setf *menu-maximum-height* 15)
 
 ;; Mode line
 (defvar *mode-line-sep* " | "
