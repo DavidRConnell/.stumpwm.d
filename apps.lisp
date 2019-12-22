@@ -35,10 +35,11 @@ move windows."
 (make-program-binding "emacsclient -c -a ''" "Emacs" "e" "emacs")
 
 ;;; System Command Keymap
-(load-module "pass")
+(load-config-file "pass.lisp")
 (defparameter *pass-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "c") "pass-copy-menu")
+    (define-key m (kbd "p") "pass-copy-menu")
+    (define-key m (kbd "u") "pass-copy-user-menu")
     (define-key m (kbd "g") "pass-generate")
     m))
 
