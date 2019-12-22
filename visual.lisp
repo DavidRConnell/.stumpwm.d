@@ -22,7 +22,14 @@
 	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
 
-(set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-15-*-*-*-*-*-*-*")
+
+(load-module "ttf-fonts")
+(print *mouse-focus-policy*)
+(set-font (make-instance 'xft:font
+                         :family "DejaVuSansMono Nerd Font"
+                         :subfamily "Book"
+                         :size 10))
+
 (set-msg-border-width 0)
 (setf *input-window-gravity* :center
       *message-window-gravity* :center

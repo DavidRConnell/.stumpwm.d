@@ -3,6 +3,7 @@
 
 ;;; Load extra packages
 (ql:quickload :cl-utilities)
+(ql:quickload :clx-truetype)
 (ql:quickload :slynk)
 
 (in-package :stumpwm)
