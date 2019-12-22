@@ -52,7 +52,7 @@
 (defun get-head-xrandr-name (&optional (head (current-head)))
   (let ((x (format nil "~a" (head-x head)))
         (y (format nil "~a" (head-y head))))
-    (loop for xrandr-screen in (list-xrandr-outputs) do
+    (loop for xrandr-screen in (list-xrandr-screens) do
       (if (and
            (string= x (gethash 'x xrandr-screen))
            (string= y (gethash 'y xrandr-screen)))
