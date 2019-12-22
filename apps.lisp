@@ -65,7 +65,6 @@ move windows."
     (define-key m (kbd "f") (concat "exec " *terminal* " -e ranger"))
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "s") "app-search-scholar")
-    (define-key m (kbd ",") "toggle-stumpwm-repl")
     (define-key m (kbd "m") "app-open-email")
     (define-key m (kbd "t") "app-open-teams")
     m))
