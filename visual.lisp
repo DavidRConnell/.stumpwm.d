@@ -105,6 +105,9 @@
 (setf *window-format*
       "%n: %12c")
 
+(defcommand toggle-all-mode-lines () ()
+    (loop for head in (screen-heads (current-screen)) do
+      (toggle-mode-line (current-screen) head)))
 
-(loop for head in (screen-heads (current-screen)) do
-      (toggle-mode-line (current-screen) head))
+(toggle-all-mode-lines)
+(define-key *root-map* (kbd "\\") "toggle-all-mode-lines")
