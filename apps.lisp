@@ -52,16 +52,13 @@ move windows."
                                     "Search scholar: ")))
     (run-shell-command (format nil "~a \'!scholar ~a\'" *browser* search-term))))
 
-(defcommand toggle-stumpwm-repl () ()
-  (run-shell-command "emacsclient -c -e \"(open-stumpwm-repl)\""))
 (defcommand app-open-email () ()
   "*email-url* defined in secrets.lisp"
-  (run-shell-command (concat *alt-browser* " " *email-url*)))
+  (run-shell-command (concat *browser* " " *email-url*)))
 
 (defcommand app-open-teams () ()
   "*email-url* defined in secrets.lisp"
-  (run-shell-command (concat *alt-browser* " teams.webex.com")))
-
+  (run-shell-command (concat *browser* " teams.webex.com")))
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
