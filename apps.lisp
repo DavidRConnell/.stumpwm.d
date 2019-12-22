@@ -73,3 +73,4 @@ move windows."
 
 (define-key *root-map* (kbd "p") *pass-map*)
 (define-key *root-map* (kbd "a") *app-map*)
+(define-key *root-map* (kbd "C-f") "find-file /home/voidee/")
