@@ -45,12 +45,14 @@ move windows."
 (defcommand app-search-duck () ()
   (let ((search-term (read-one-line (current-screen)
                                     "Search duck: ")))
-    (run-shell-command (format nil "~a \'~a\'" *browser* search-term))))
+    (if search-term
+        (run-shell-command (format nil "~a \'~a\'" *browser* search-term)))))
 
 (defcommand app-search-scholar () ()
   (let ((search-term (read-one-line (current-screen)
                                     "Search scholar: ")))
-    (run-shell-command (format nil "~a \'!scholar ~a\'" *browser* search-term))))
+    (if search-term
+        (run-shell-command (format nil "~a \'!scholar ~a\'" *browser* search-term)))))
 
 (defcommand app-open-email () ()
   "*email-url* defined in secrets.lisp"
