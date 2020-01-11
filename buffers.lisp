@@ -58,6 +58,12 @@
 (define-key *root-map* (kbd "9") "select-window-by-number 9")
 (define-key *root-map* (kbd "`") "select-window-by-number")
 (define-key *root-map* (kbd "q") "delete")
+(define-key *root-map* (kbd "Q") "killall")
+
+(defcommand killall () ()
+  "Run killall on current window's class"
+  (let ((class (window-class (current-window))))
+    (run-shell-command (concat "killall " (string-downcase class)))))
 
 ;; Buffers
 (define-key *root-map* (kbd "]") "next")
