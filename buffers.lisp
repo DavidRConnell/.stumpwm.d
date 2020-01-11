@@ -5,6 +5,8 @@
                                 (when (member command winner-mode:*default-commands*)
                                   (winner-mode:dump-group-to-file))))
 
+(setf *mouse-focus-policy* :click)
+
 ;; Frame Splitting and moving
 (defparameter *window-map*
   (let ((m (make-sparse-keymap)))
