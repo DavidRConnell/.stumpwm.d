@@ -24,6 +24,7 @@ A selection of nil (through C-g) aborts."
        (run-shell-command (concat "xdg-open " abs-file-ns))))))
 
 (defun string-substitute (new old string)
+  "Replace substring OLD with substring NEW in STRING."
   (if (string-match string old)
       (let ((sub-strings (split old string)))
         (concat (first sub-strings) new (second sub-strings)))
