@@ -23,12 +23,7 @@
   (update-color-map (current-screen)))
 
 
-(load-module "ttf-fonts")
 (print *mouse-focus-policy*)
-(set-font (make-instance 'xft:font
-                         :family "DejaVuSansMono Nerd Font"
-                         :subfamily "Book"
-                         :size 10))
 
 (set-msg-border-width 0)
 (setf *input-window-gravity* :center
