@@ -32,6 +32,5 @@
 (load-config-file "media.lisp")
 (load-config-file "visual.lisp")
 (load-config-file "buffers.lisp")
-(load-config-file "find-file")
 (load-config-file "apps.lisp")
 (load-config-file "local.lisp")
