@@ -34,3 +34,5 @@
 (load-config-file "buffers.lisp")
 (load-config-file "apps.lisp")
 (load-config-file "local.lisp")
+
+(stumpwm:hsplit)
