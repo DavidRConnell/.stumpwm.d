@@ -1,10 +1,11 @@
 (in-package :stumpwm)
-(load-module "winner-mode")
+;; (load-module "winner-mode")
 
-(add-hook *post-command-hook* (lambda (command)
-                                (when (member command winner-mode:*default-commands*)
-                                  (winner-mode:dump-group-to-file))))
+;; (add-hook *post-command-hook* (lambda (command)
+;;                                 (when (member command winner-mode:*default-commands*)
+;;                                   (winner-mode:dump-group-to-file))))
 
+(setf *frame-number-map* "aoeuhtns")
 (setf *mouse-focus-policy* :click)
 
 ;; Frame Splitting and moving
@@ -21,8 +22,8 @@
     (define-key m (kbd "+") "resize-direction up")
     (define-key m (kbd "-") "resize-direction down")
     (define-key m (kbd "|") "iresize")
-    (define-key m (kbd "u") "winner-undo")
-    (define-key m (kbd "C-r") "winner-redo")
+    ;; (define-key m (kbd "u") "winner-undo")
+    ;; (define-key m (kbd "C-r") "winner-redo")
     m))
 
 (defparameter *goto-window-map*
@@ -38,6 +39,7 @@
     m))
 
 (define-key *root-map* (kbd "w") *window-map*)
+(define-key *root-map* (kbd "C-w") "ace-window")
 (define-key *root-map* (kbd "u") *goto-window-map*)
 (define-key *root-map* (kbd "j") "move-focus down")
 (define-key *root-map* (kbd "k") "move-focus up")
@@ -61,6 +63,15 @@
 (define-key *root-map* (kbd "`") "select-window-by-number")
 (define-key *root-map* (kbd "q") "delete")
 (define-key *root-map* (kbd "Q") "killall")
+
+(defcommand ace-window () ()
+  "Go to other window if there's two windows; ask for window if there's more
+Analagous to ace-window for emacs."
+  (let ((number-windows (length (screen-windows (current-screen)))))
+    (cond ((= number-windows 2)
+           (stumpwm:prev))
+          ((> number-windows 2)
+           (stumpwm:windowlist)))))
 
 (defcommand killall () ()
   "Run killall on current window's class"

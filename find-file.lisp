@@ -9,12 +9,14 @@ A selection of nil (through C-g) aborts."
   (let* ((formatted-initial-path
            (string-substitute "~/" (namestring (user-homedir-pathname)) (namestring initial-path)))
          (prompt (format nil "Find-file: ~a^B" formatted-initial-path))
-           (file-string (select-from-menu
-                  (current-screen)
-                            (mapcar #'list (ls initial-path))
-                            prompt))
-           (abs-file-ns (concat (namestring initial-path) (car file-string)))
-           (abs-file-path (pathname abs-file-ns)))
+         (file-string (select-from-menu
+                       (current-screen)
+                       (ls initial-path)
+                       prompt
+                       0
+                       *find-file-map*))
+         (abs-file-ns (concat (namestring initial-path) (car file-string)))
+         (abs-file-path (pathname abs-file-ns)))
     (cond
       ((not file-string)
        (message "Abort."))
@@ -22,6 +24,20 @@ A selection of nil (through C-g) aborts."
        (find-file abs-file-ns))
       (t
        (run-shell-command (concat "xdg-open " abs-file-ns))))))
+
+(defvar *find-file-map*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "TAB") 'find-file-tab-complete)
+    (define-key m (kbd "DEL") 'find-file-delete-or-back-directory)
+    m))
+
+(defcommand find-file-tab-complete () ()
+      (stumpwm:next))
+
+(defun find-file-delete-or-back-directory (input)
+  (if (equal 0 (length input))
+      (message "empty")
+      (message "not empty")))
 
 (defun string-substitute (new old string)
   "Replace substring OLD with substring NEW in STRING."
