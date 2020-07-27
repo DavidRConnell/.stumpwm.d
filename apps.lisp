@@ -63,6 +63,10 @@ move windows."
   "*email-url* defined in secrets.lisp"
   (run-shell-command (concat *browser* " teams.webex.com")))
 
+(defcommand app-org-capture () ()
+  "Run org-capture"
+  (run-shell-command "org-capture"))
+
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "f") (concat "exec " *terminal* " -e ranger"))
@@ -70,6 +74,7 @@ move windows."
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd "m") "app-open-email")
     (define-key m (kbd "t") "app-open-teams")
+    (define-key m (kbd "x") "app-org-capture")
     m))
 
 (define-key *root-map* (kbd "p") *pass-map*)
