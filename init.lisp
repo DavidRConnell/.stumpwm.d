@@ -20,7 +20,7 @@
 (run-shell-command "emacs --daemon")
 
 ;; set module directory (if not already set)
-(set-module-dir "~/projects/stumpwm-contrib/")
+(set-module-dir "~/clones/stumpwm-contrib/")
 (defvar *config-dir* "~/.stumpwm.d/")
 (defun load-config-file (relative-path)
   (load (concat *config-dir* relative-path)))
