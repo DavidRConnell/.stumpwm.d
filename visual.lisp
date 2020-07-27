@@ -18,7 +18,6 @@
   (setf *grab-pointer-character* 40
         *grab-pointer-character-mask* 41)
 
-	
   (setf (car *colors*) bg
 	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
