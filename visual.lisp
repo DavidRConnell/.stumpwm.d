@@ -1,18 +1,19 @@
 (in-package :stumpwm)
 
-(let ((bg "#282c34")
-      (fg "#a9a1e1"))
+(let ((bg "#e0e0e0")
+      (fg "#191919"))
 
   (set-fg-color fg)
-  (set-bg-color "#000000")
+  (set-bg-color "#ffffff")
   (set-border-color bg)
   (set-focus-color fg)
   (set-unfocus-color bg)
+  (setf border-width 1)
 
-  (setf *mode-line-foreground-color* bg
-        *mode-line-border-width* 0
-        *mode-line-background-color* fg
-        *mode-line-highlight-template* "^B~A^b")
+  (setf *mode-line-foreground-color* fg
+        *mode-line-border-width* 1
+        *mode-line-background-color* bg
+        *mode-line-highlight-template* "^R~A^r")
 
   (setf *grab-pointer-character* 40
         *grab-pointer-character-mask* 41)
@@ -25,7 +26,7 @@
 
 (print *mouse-focus-policy*)
 
-(set-msg-border-width 0)
+(set-msg-border-width 1)
 (setf *input-window-gravity* :center
       *message-window-gravity* :center
       *message-window-padding* 15
