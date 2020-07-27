@@ -24,8 +24,6 @@
   (update-color-map (current-screen)))
 
 
-(print *mouse-focus-policy*)
-
 (set-msg-border-width 1)
 (setf *input-window-gravity* :center
       *message-window-gravity* :center
