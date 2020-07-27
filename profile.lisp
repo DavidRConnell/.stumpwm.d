@@ -1,6 +1,6 @@
 (in-package :stumpwm)
 
-(defvar *browser* "next")
+(defvar *browser* "qutebrowser")
 (defvar *alt-browser* "chromium")
 (defvar *terminal* "alacritty")
 (defvar *editor* "emacsclient -c")
