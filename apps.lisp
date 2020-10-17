@@ -56,6 +56,17 @@ move windows."
     (if search-term
         (run-shell-command (format nil "~a \'!scholar ~a\'" *browser* search-term)))))
 
+(defcommand app-search-wiki () ()
+  (let ((search-term (read-one-line (current-screen)
+                                    "Search wiki: ")))
+    (if search-term
+        (run-shell-command (format nil "~a \'!wiki ~a\'" *browser* search-term)))))
+
+(defcommand app-search-doi () ()
+  (let ((search-term (read-one-line (current-screen) "Search by doi: ")))
+    (if search-term
+        (run-shell-command (format nil "~a \'doi.org/~a\'" *browser* search-term)))))
+
 (defcommand app-open-email () ()
   "*email-url* defined in secrets.lisp"
   (run-shell-command (concat *browser* " " *email-url*)))
@@ -72,6 +83,8 @@ move windows."
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "f") (concat "exec " *terminal* " -e ranger"))
     (define-key m (kbd "d") "app-search-duck")
+    (define-key m (kbd "D") "app-search-doi")
+    (define-key m (kbd "w") "app-search-wiki")
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd "m") "app-open-email")
     (define-key m (kbd "t") "app-open-teams")
