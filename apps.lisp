@@ -32,7 +32,7 @@ move windows."
 (make-program-binding "qutebrowser" "qutebrowser" "b" "browser")
 (make-program-binding "chromium" "Chromium" "M-b" "alt-browser")
 (make-program-binding "alacritty" "Alacritty" "t" "terminal")
-(make-program-binding "emacsclient -c -a ''" "Emacs" "e" "emacs")
+(make-program-binding "emacsclient -c -a 'emacs --daemon --with-profile default'" "Emacs" "e" "emacs")
 
 ;;; System Command Keymap
 (load-config-file "pass.lisp")
