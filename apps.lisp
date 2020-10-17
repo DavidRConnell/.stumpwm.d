@@ -33,6 +33,7 @@ move windows."
 (make-program-binding "chromium" "Chromium" "M-b" "alt-browser")
 (make-program-binding "alacritty" "Alacritty" "t" "terminal")
 (make-program-binding "emacsclient -c -a 'emacs --daemon --with-profile default'" "Emacs" "e" "emacs")
+(make-program-binding "zathura" "Zathura" "f" "zathura")
 
 ;;; System Command Keymap
 (load-config-file "pass.lisp")
