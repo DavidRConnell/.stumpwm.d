@@ -77,7 +77,7 @@ move windows."
 
 (defcommand app-org-capture () ()
   "Run org-capture"
-  (run-shell-command "org-capture"))
+  (run-shell-command "org-capture -k i"))
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
