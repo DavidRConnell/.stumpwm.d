@@ -68,11 +68,11 @@ move windows."
         (run-shell-command (format nil "~a \'doi.org/~a\'" *browser* search-term)))))
 
 (defcommand app-open-email () ()
-  "*email-url* defined in secrets.lisp"
+  "*email-url* defined in profile.lisp"
   (run-shell-command (concat *browser* " " *email-url*)))
 
 (defcommand app-open-teams () ()
-  "*email-url* defined in secrets.lisp"
+  "*email-url* defined in profile.lisp"
   (run-shell-command (concat *browser* " teams.webex.com")))
 
 (defcommand app-org-capture () ()

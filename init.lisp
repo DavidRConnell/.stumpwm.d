@@ -27,7 +27,6 @@
 
 (load-config-file "general.lisp")
 (load-config-file "profile.lisp")
-(load-config-file "secrets.lisp") ; Defines vars I don't want to share.
 (load-config-file "session.lisp")
 (load-config-file "media.lisp")
 (load-config-file "visual.lisp")
