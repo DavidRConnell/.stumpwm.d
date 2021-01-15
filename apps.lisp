@@ -62,6 +62,21 @@ move windows."
     (if search-term
         (run-shell-command (format nil "~a \'!wiki ~a\'" *browser* search-term)))))
 
+(defcommand app-search-wiktionary () ()
+  (let ((search-term (read-one-line (current-screen)
+                                    "Search wiktionary: ")))
+    (if search-term
+        (run-shell-command (format nil "~a \'!wiktionary ~a\'" *browser* search-term)))))
+
+(defcommand app-search-gene () ()
+  (let ((search-term (read-one-line (current-screen)
+                                    "Search for gene: ")))
+    (if search-term
+        (run-shell-command (format nil
+                                   "~a \'www.ncbi.nlm.nih.gov/gene/~a\'"
+                                   *browser*
+                                   search-term)))))
+
 (defcommand app-search-doi () ()
   (let ((search-term (read-one-line (current-screen) "Search by doi: ")))
     (if search-term
@@ -85,6 +100,8 @@ move windows."
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "D") "app-search-doi")
     (define-key m (kbd "w") "app-search-wiki")
+    (define-key m (kbd "W") "app-search-wiktionary")
+    (define-key m (kbd "g") "app-search-gene")
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd "m") "app-open-email")
     (define-key m (kbd "t") "app-open-teams")
