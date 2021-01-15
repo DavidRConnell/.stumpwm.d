@@ -17,7 +17,7 @@
 
 ;;; Startup Programs
 (run-shell-command "redshift")
-(run-shell-command "emacs --daemon --with-profile default")
+(run-shell-command "emacs --daemon")
 
 ;; set module directory (if not already set)
 (set-module-dir "~/clones/stumpwm-contrib/")
