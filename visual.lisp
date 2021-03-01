@@ -22,7 +22,7 @@
 	(car (last *colors*)) fg)
   (update-color-map (current-screen)))
 
-(set-font "-*-DejaVuSansMono Nerd Font-*-r-*-*-15-*-*-*-*-*-*-*")
+(set-font "-*-DejaVu Sans Mono-*-r-*-*-15-*-*-*-*-*-*-*")
 
 (set-msg-border-width 1)
 (setf *input-window-gravity* :center
