@@ -92,7 +92,6 @@ move windows."
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "f") (concat "exec " *terminal* " -e ranger"))
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "D") "app-search-doi")
     (define-key m (kbd "w") "app-search-wiki")
