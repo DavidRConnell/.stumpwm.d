@@ -90,16 +90,6 @@ move windows."
   "*email-url* defined in profile.lisp"
   (run-shell-command (concat *browser* " teams.webex.com")))
 
-(defcommand app-org-capture () ()
-  "Run org-capture"
-  (run-shell-command "org-capture -k i"))
-
-(defcommand app-quick-capture () ()
-  "Use stumpwm input menu to capture a message to inbox.org."
-  (let ((note (read-one-line (current-screen) "Message: "))
-        (note-file "~/notes/zettle/inbox.org"))
-    (run-shell-command (format nil "echo \'* ~a\' >> ~a" note note-file))))
-
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "f") (concat "exec " *terminal* " -e ranger"))
@@ -111,8 +101,6 @@ move windows."
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd "m") "app-open-email")
     (define-key m (kbd "t") "app-open-teams")
-    (define-key m (kbd "x") "app-org-capture")
-    (define-key m (kbd "q") "app-quick-capture")
     m))
 
 (define-key *root-map* (kbd "p") *pass-map*)
