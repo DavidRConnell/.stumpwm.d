@@ -15,7 +15,7 @@ move windows."
        (run-shell-command ,program-name))
 
      (defcommand ,(intern (format nil "run-or-raise-~a" alias)) () ()
-       (run-or-raise ,program-name '(:class ,window-class)))
+       (ace-window ,window-class ,program-name))
 
      (defcommand ,(intern (format nil "run-or-pull-~a" alias)) () ()
        (run-or-pull ,program-name '(:class ,window-class)))

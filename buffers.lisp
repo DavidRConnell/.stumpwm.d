@@ -64,14 +64,29 @@
 (define-key *root-map* (kbd "q") "delete")
 (define-key *root-map* (kbd "Q") "killall")
 
-(defcommand ace-window () ()
+(defcommand ace-window (&optional class program) ()
   "Go to other window if there's two windows; ask for window if there's more
 Analagous to ace-window for emacs."
-  (let ((number-windows (length (screen-windows (current-screen)))))
-    (cond ((= number-windows 2)
-           (stumpwm:prev))
-          ((> number-windows 2)
-           (stumpwm:windowlist)))))
+  (let* ((windows (filter-windows-by-class class))
+	 (number-windows (length windows)))
+    (cond ((and class
+		(or (< number-windows 2)
+		    (and (= number-windows 2)
+			 (string= (window-class (current-window)) class))))
+	   (stumpwm:run-or-raise program `(:class ,class)))
+	  ((and (>= number-windows 2) class)
+	   (stumpwm:windowlist "%n|%t" windows))
+	  ((= number-windows 2)
+	   (stumpwm:prev))
+	  (t (stumpwm:windowlist "%n|%c: %t" windows)))))
+
+(defun filter-windows-by-class (&optional class)
+  (let ((all-windows (screen-windows (current-screen))))
+    (if class
+	(loop for w in all-windows
+	      when (string= (window-class w) class)
+		collect w)
+	all-windows)))
 
 (defcommand killall () ()
   "Run killall on current window's class"
