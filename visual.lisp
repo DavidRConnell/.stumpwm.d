@@ -84,7 +84,7 @@
   (let ((emails (remove #\Newline (run-shell-command "mu find g:n | wc -l" t))))
     (if (equal emails "0")
         (format nil "~C~A" #\U+faee *mode-line-sep*)
-        (format nil "^[^3*~C ~A^]~A" #\U+f6ed emails *mode-line-sep*))))
+        (format nil "^[^4*~C ~A^]~A" #\U+f6ed emails *mode-line-sep*))))
 
 (setf *screen-mode-line-format*
       (list " "
