@@ -91,7 +91,9 @@ Analagous to ace-window for emacs."
 (defcommand killall () ()
   "Run killall on current window's class"
   (let ((class (window-class (current-window))))
-    (run-shell-command (concat "killall " (string-downcase class)))))
+    (if (string= "Emacs" class)
+	(run-shell-command "systemctl --user restart emacs.service")
+	(run-shell-command (concat "killall " (string-downcase class))))))
 
 ;; Buffers
 (define-key *root-map* (kbd "]") "next")
