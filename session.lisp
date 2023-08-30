@@ -30,9 +30,13 @@
   (session-clean)
   (quit))
 
+(defcommand session-screen-off () ()
+  (run-shell-command "sleep 0.2; xset dpms force off"))
+
 (defparameter *session-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "l") "session-lock")
+    (define-key m (kbd "z") "session-screen-off")
     (define-key m (kbd "s") "session-suspend")
     (define-key m (kbd "r") "session-reboot")
     (define-key m (kbd "p") "session-power-off")
