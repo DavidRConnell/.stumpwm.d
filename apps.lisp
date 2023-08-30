@@ -40,8 +40,11 @@ move windows."
 (load-config-file "pass.lisp")
 (defparameter *pass-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "p") "pass-copy-menu")
-    (define-key m (kbd "u") "pass-copy-user-menu")
+    (define-key m (kbd "p") "pass-copy")
+    (define-key m (kbd "u") "pass-copy-user")
+    (define-key m (kbd "f") "pass-copy-field")
+    (define-key m (kbd "o") "pass-copy-otp")
+    (define-key m (kbd "n") "pass-update")
     (define-key m (kbd "g") "pass-generate")
     m))
 
