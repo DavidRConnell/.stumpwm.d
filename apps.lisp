@@ -55,7 +55,7 @@ move windows."
   (let ((search-term (read-one-line (current-screen)
                                     "Search scholar: ")))
     (if search-term
-        (run-shell-command (format nil "~a \'!scholar ~a\'" *browser* search-term)))))
+        (run-shell-command (format nil "~a \'!article ~a\'" *browser* search-term)))))
 
 (defcommand app-search-wiki () ()
   (let ((search-term (read-one-line (current-screen)
@@ -87,13 +87,32 @@ move windows."
   "*email-url* defined in profile.lisp"
   (run-shell-command (concat *browser* " " *email-url*)))
 
-(defcommand app-open-teams () ()
-  "*email-url* defined in profile.lisp"
-  (run-shell-command (concat *browser* " teams.webex.com")))
+(defcommand app-screenshot () ()
+"Take a screenshot and save to ~/screenshots"
+  ;; (run-shell-command "scrot -e 'mv $f ~/screenshots/' -s")
+  (run-shell-command "flameshot gui"))
+
+(defcommand open-radio () ()
+ "Open spotify-player in a new terminal or open an existing one"
+ (let ((name "*spotify*"))
+   (if (filter-windows-by-name name)
+       (select-window-by-name name)
+       (run-shell-command
+	(format nil "alacritty --title=\"~a\" --command=spotify_player" name)))))
+
+(defun filter-windows-by-name (&optional name)
+  (let ((all-windows (screen-windows (current-screen))))
+    (if name
+	(loop for w in all-windows
+	      when (string= (window-name w) name)
+	      collect w)
+	all-windows)))
+
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "b") "open-browser-container")
+    (define-key m (kbd "r") "open-radio")
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "D") "app-search-doi")
     (define-key m (kbd "w") "app-search-wiki")
@@ -101,9 +120,8 @@ move windows."
     (define-key m (kbd "g") "app-search-gene")
     (define-key m (kbd "s") "app-search-scholar")
     (define-key m (kbd "m") "app-open-email")
-    (define-key m (kbd "t") "app-open-teams")
+    (define-key m (kbd "x") "app-screenshot")
     m))
 
 (define-key *root-map* (kbd "p") *pass-map*)
 (define-key *root-map* (kbd "a") *app-map*)
-(define-key *root-map* (kbd "C-f") "find-file /home/voidee/")
