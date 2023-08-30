@@ -29,8 +29,9 @@ move windows."
      (define-key *root-map* (kbd ,(format nil "C-~a" key))
        ,(format nil "run-new-~a" alias))))
 
-(make-program-binding "vimb" "vimb" "b" "browser")
-(make-program-binding "qutebrowser" "qutebrowser" "M-b" "alt-browser")
+(load-config-file "browser-containers.lisp")
+(make-program-binding "qutebrowser" "qutebrowser" "b" "browser")
+(make-program-binding "firefox" "firefox" "M-b" "alt-browser")
 (make-program-binding "alacritty" "Alacritty" "t" "terminal")
 (make-program-binding "emacsclient -c -a ''" "Emacs" "e" "emacs")
 (make-program-binding "zathura" "Zathura" "f" "zathura")
@@ -92,6 +93,7 @@ move windows."
 
 (defparameter *app-map*
   (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "b") "open-browser-container")
     (define-key m (kbd "d") "app-search-duck")
     (define-key m (kbd "D") "app-search-doi")
     (define-key m (kbd "w") "app-search-wiki")
